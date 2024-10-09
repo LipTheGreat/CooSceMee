@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Availability Summary</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Meeting Availability Summary</h1>
+        <p>Here’s an overview of the participants' availability:</p>
+        <div class="availability-summary" id="availability-summary">
+            <p>Loading availability...</p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        // Fetch availability data from the server
+        fetch('http://localhost:3000/api/availability')
+            .then(response => response.json())
+            .then(data => {
+                const summaryContainer = document.getElementById('availability-summary');
+                summaryContainer.innerHTML = ''; // Clear loading text
+
+                if (data.length === 0) {
+                    summaryContainer.innerHTML = '<p>No availability submitted yet.</p>';
+                    return;
+                }
+
+                data.forEach(entry => {
+                    const participantDiv = document.createElement('div');
+                    participantDiv.innerHTML = `<strong>${entry.name}</strong>: ${entry.times.join(', ')}`;
+                    summaryContainer.appendChild(participantDiv);
+                });
+            })
+            .catch(error => {
+                console.error('Error fetching availability:', error);
+            });
+    </script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meeting Scheduler - Organizer</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Meeting Scheduler</h1>
+        <form id="organizer-form">
+            <label for="meeting-name">Meeting Name:</label>
+            <input type="text" id="meeting-name" name="meeting-name" required>
+
+            <label for="meeting-description">Description:</label>
+            <textarea id="meeting-description" name="meeting-description" required></textarea>
+
+            <button type="submit">Generate Link</button>
+        </form>
+
+        <div id="link-container" class="hidden">
+            <h2>Share this link with participants:</h2>
+            <a id="meeting-link" href="#" target="_blank"></a>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
